@@ -20,8 +20,6 @@ function setup(){
   createCanvas(innerWidth,innerHeight);
   mic = new p5.AudioIn()
   mic.start();
-//  colorMode(HSB,1);
-//  blendMode(ADD);
   noStroke();
 
   c1 = color(0, 18, 62);
@@ -56,7 +54,9 @@ function draw() {
 
   stars[i].show(micLevel);
   stars[i].reAppear();
-//  stars[i].mouseIntraction();
+  if(mouseIsPressed){
+  stars[i].mouseIntraction();
+}
 
   }
 
@@ -76,14 +76,9 @@ class Stars {
      this.dy = tempdy;
      this.m = random(100,200);
 
-
-      this.c = random();
-     //this.c = "rgb(0,255,0)";
-
      this.theta = random(PI);
-      this.drag = 0.92;
-      this.dx = sin(this.theta);
-      this.dy = cos(this.theta);
+     this.dx = sin(this.theta);
+     this.dy = cos(this.theta);
 
 
      this.radius = tempradius;
@@ -98,15 +93,12 @@ move(level){
 
 show(level){
 
-  // stroke(this.color);
-  // strokeWeight(this.weight);
-  // point(this.x,this.y);
   push();
   colorMode(HSB,1);
   blendMode(ADD);
   let c = random();
 
-  fill(255);
+  fill(c,1,1,1*c);
   ellipse(this.x, this.y, this.m*level);
   pop();
 }
